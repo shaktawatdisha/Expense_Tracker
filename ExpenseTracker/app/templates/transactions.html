@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+  
+  {% block content %}
+  <!-- Page Content -->
+  <div class="p-6 max-w-6xl mx-auto">
+    <div class="flex justify-between items-center mb-4">
+      <h1 class="text-3xl font-semibold">Transactions</h1>
+      <a href="{% url 'expense-create' %}" class="bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-black">
+        New Transaction
+      </a>
+    </div>
+    <!-- Search and Filters -->
+    <div class="bg-gray-100 rounded-lg p-4 mb-6 flex flex-wrap items-center gap-4">
+      <input type="text" placeholder="Search transactions" class="bg-transparent focus:outline-none w-full sm:w-auto flex-grow sm:flex-grow-0" />
+      <div class="flex flex-wrap gap-2">
+        <button class="bg-white border px-3 py-1 rounded-md text-sm">Category</button>
+        <button class="bg-white border px-3 py-1 rounded-md text-sm">Account</button>
+        <button class="bg-white border px-3 py-1 rounded-md text-sm">Date</button>
+      </div>
+    </div>
+
+    <!-- Transactions Table -->
+    <div class="bg-white rounded-xl shadow p-4 overflow-x-auto">
+      <table class="min-w-full text-left">
+        <thead class="text-gray-500 border-b text-sm">
+          <tr>
+            <th class="py-2 px-4">Date</th>
+            <th class="py-2 px-4">Description</th>
+            <th class="py-2 px-4">Category</th>
+            {% comment %} <th class="py-2 px-4">Account</th> {% endcomment %}
+            <th class="py-2 px-4">Amount</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-700 text-sm">
+          {% for expense in expenses %}
+          <tr class="border-b">
+            <td class="py-2 px-4">{{expense.date}}</td>
+            <td class="py-2 px-4">{{expense.description}}</td>
+            <td class="py-2 px-4"><span class="bg-gray-100 px-2 py-1 rounded-md">{{expense.category}}</span></td>
+            {% comment %} <td class="py-2 px-4">Checking Account</td> {% endcomment %}
+            <td class="py-2 px-4 text-red-600">-${{expense.amount}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+{% endblock %}

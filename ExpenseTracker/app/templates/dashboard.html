@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+  
+  {% block content %}
+  <div class="p-6 max-w-6xl mx-auto">
+    <h1 class="text-3xl font-semibold mb-2">Dashboard</h1>
+    <p class="text-gray-600 mb-6">Welcome back, {{ request.user.username }}!</p>
+
+    <!-- Summary Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+      <div class="bg-white rounded-xl shadow p-6">
+        <div class="text-gray-500 text-sm mb-1">Income</div>
+        <div class="text-2xl font-bold">$5,500</div>
+        <div class="text-green-600 text-sm mt-1">+10%</div>
+      </div>
+      <div class="bg-white rounded-xl shadow p-6">
+        <div class="text-gray-500 text-sm mb-1">Expenses</div>
+        <div class="text-2xl font-bold">$3,200</div>
+        <div class="text-red-600 text-sm mt-1">-5%</div>
+      </div>
+      <div class="bg-white rounded-xl shadow p-6">
+        <div class="text-gray-500 text-sm mb-1">Savings</div>
+        <div class="text-2xl font-bold">$2,300</div>
+        <div class="text-green-600 text-sm mt-1">+15%</div>
+      </div>
+    </div>
+
+    <!-- Recent Transactions -->
+    <h2 class="text-xl font-semibold mb-4">Recent Transactions</h2>
+    <div class="bg-white rounded-xl shadow p-4 overflow-x-auto">
+      <table class="min-w-full text-left">
+        <thead class="text-gray-500 border-b">
+          <tr>
+            <th class="py-2 px-4">Date</th>
+            <th class="py-2 px-4">Category</th>
+            <th class="py-2 px-4">Description</th>
+            <th class="py-2 px-4">Amount</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-700">
+          <tr class="border-b">
+            <td class="py-2 px-4">2024-07-20</td>
+            <td class="py-2 px-4">Salary</td>
+            <td class="py-2 px-4">Monthly Paycheck</td>
+            <td class="py-2 px-4">$5,000</td>
+          </tr>
+          <tr class="border-b">
+            <td class="py-2 px-4">2024-07-21</td>
+            <td class="py-2 px-4">Groceries</td>
+            <td class="py-2 px-4">Supermarket</td>
+            <td class="py-2 px-4 text-red-600">-$200</td>
+          </tr>
+          <tr class="border-b">
+            <td class="py-2 px-4">2024-07-22</td>
+            <td class="py-2 px-4">Dining</td>
+            <td class="py-2 px-4">Restaurant</td>
+            <td class="py-2 px-4 text-red-600">-$150</td>
+          </tr>
+          <tr class="border-b">
+            <td class="py-2 px-4">2024-07-23</td>
+            <td class="py-2 px-4">Utilities</td>
+            <td class="py-2 px-4">Electricity Bill</td>
+            <td class="py-2 px-4 text-red-600">-$100</td>
+          </tr>
+          <tr>
+            <td class="py-2 px-4">2024-07-24</td>
+            <td class="py-2 px-4">Entertainment</td>
+            <td class="py-2 px-4">Movie Tickets</td>
+            <td class="py-2 px-4 text-red-600">-$50</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endblock %}
+
+  
+
+
+
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinTrack Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <div class="flex justify-between items-center p-6 shadow-sm bg-white">
+    <div class="text-xl font-bold">FinTrack</div>
+    <nav class="space-x-6 text-gray-700 font-medium">
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+        <a href="{% url 'expense-list' %}">Transactions</a>
+        <a href="{% url 'category-list' %}">Categories</a>
+        <a href="{% url 'reports' %}">Reports</a>
+    </nav>
+    <div class="flex items-center gap-4">
+      <button class="relative">
+        <span class="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
+        🔔
+      </button>
+      <a href="/api/profile">
+        <img src="https://i.pravatar.cc/36" alt="Profile" class="w-9 h-9 rounded-full border" />
+      </a>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="p-6 max-w-6xl mx-auto">
+    <h1 class="text-3xl font-semibold mb-2">Dashboard</h1>
+    <p class="text-gray-600 mb-6">Welcome back, {{ request.user.username }}!</p>
+
+    <!-- Summary Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+      <div class="bg-white rounded-xl shadow p-6">
+        <div class="text-gray-500 text-sm mb-1">Income</div>
+        <div class="text-2xl font-bold">$5,500</div>
+        <div class="text-green-600 text-sm mt-1">+10%</div>
+      </div>
+      <div class="bg-white rounded-xl shadow p-6">
+        <div class="text-gray-500 text-sm mb-1">Expenses</div>
+        <div class="text-2xl font-bold">$3,200</div>
+        <div class="text-red-600 text-sm mt-1">-5%</div>
+      </div>
+      <div class="bg-white rounded-xl shadow p-6">
+        <div class="text-gray-500 text-sm mb-1">Savings</div>
+        <div class="text-2xl font-bold">$2,300</div>
+        <div class="text-green-600 text-sm mt-1">+15%</div>
+      </div>
+    </div>
+
+    <!-- Recent Transactions -->
+    <h2 class="text-xl font-semibold mb-4">Recent Transactions</h2>
+    <div class="bg-white rounded-xl shadow p-4 overflow-x-auto">
+      <table class="min-w-full text-left">
+        <thead class="text-gray-500 border-b">
+          <tr>
+            <th class="py-2 px-4">Date</th>
+            <th class="py-2 px-4">Category</th>
+            <th class="py-2 px-4">Description</th>
+            <th class="py-2 px-4">Amount</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-700">
+          <tr class="border-b">
+            <td class="py-2 px-4">2024-07-20</td>
+            <td class="py-2 px-4">Salary</td>
+            <td class="py-2 px-4">Monthly Paycheck</td>
+            <td class="py-2 px-4">$5,000</td>
+          </tr>
+          <tr class="border-b">
+            <td class="py-2 px-4">2024-07-21</td>
+            <td class="py-2 px-4">Groceries</td>
+            <td class="py-2 px-4">Supermarket</td>
+            <td class="py-2 px-4 text-red-600">-$200</td>
+          </tr>
+          <tr class="border-b">
+            <td class="py-2 px-4">2024-07-22</td>
+            <td class="py-2 px-4">Dining</td>
+            <td class="py-2 px-4">Restaurant</td>
+            <td class="py-2 px-4 text-red-600">-$150</td>
+          </tr>
+          <tr class="border-b">
+            <td class="py-2 px-4">2024-07-23</td>
+            <td class="py-2 px-4">Utilities</td>
+            <td class="py-2 px-4">Electricity Bill</td>
+            <td class="py-2 px-4 text-red-600">-$100</td>
+          </tr>
+          <tr>
+            <td class="py-2 px-4">2024-07-24</td>
+            <td class="py-2 px-4">Entertainment</td>
+            <td class="py-2 px-4">Movie Tickets</td>
+            <td class="py-2 px-4 text-red-600">-$50</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</body>
+</html> {% endcomment %}
+
+

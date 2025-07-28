@@ -1,0 +1,168 @@
+
+
+
+
+{% extends "base.html" %}
+  
+  {% block content %}
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      color: #111827;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.25rem;
+    }
+
+    nav a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: #4b5563;
+    }
+
+    nav a:hover {
+      color: #000000;
+    }
+
+    .settings-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .setting-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .setting-item img {
+      width: 36px;
+      height: 36px;
+      margin-right: 1rem;
+    }
+
+    .setting-text strong {
+      display: block;
+      font-weight: 600;
+    }
+
+    .setting-text small {
+      color: #6b7280;
+    }
+
+    .logout-button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: #f3f4f6;
+      cursor: pointer;
+      border-radius: 0.375rem;
+      font-weight: 600;
+    }
+
+    .logout-button:hover {
+      background-color: #e5e7eb;
+    }
+  </style>
+
+  <div class="settings-container">
+    <h1>Settings</h1>
+
+    <section>
+      <h2>Account</h2>
+      <div class="setting-item">
+        <img src="https://img.icons8.com/ios/50/user--v1.png" alt="Account Icon"/>
+        <div class="setting-text">
+          <strong>Account Details</strong>
+          <small>Manage your account details</small>
+        </div>
+      </div>
+     
+    </section>
+
+    <section>
+      <h2>Preferences</h2>
+      <div class="setting-item">
+        <img src="https://img.icons8.com/ios/50/bell--v1.png" alt="Notifications Icon"/>
+        <div class="setting-text">
+          <strong>Notifications</strong>
+          <small>Manage your notification settings</small>
+        </div>
+      </div>
+      <div class="setting-item">
+        <img src="https://img.icons8.com/ios/50/us-dollar-circled--v1.png" alt="Currency Icon"/>
+        <div class="setting-text">
+          <strong>Currency</strong>
+          <small>Manage your currency settings</small>
+        </div>
+      </div>
+      <div class="setting-item">
+        <img src="https://img.icons8.com/ios/50/settings--v1.png" alt="App Settings Icon"/>
+        <div class="setting-text">
+          <strong>App Settings</strong>
+          <small>Manage your app settings</small>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Support</h2>
+      <div class="setting-item">
+        <img src="https://img.icons8.com/ios/50/help.png" alt="Help Center Icon"/>
+        <div class="setting-text">
+          <strong>Help Center</strong>
+          <small>Get help with the app</small>
+        </div>
+      </div>
+      <div class="setting-item">
+        <img src="https://img.icons8.com/ios/50/message-group.png" alt="Contact Icon"/>
+        <div class="setting-text">
+          <strong>Contact Us</strong>
+          <small>Contact us for support</small>
+        </div>
+      </div>
+      <div class="setting-item">
+        <img src="https://img.icons8.com/ios/50/info--v1.png" alt="About Icon"/>
+        <div class="setting-text">
+          <strong>About</strong>
+          <small>Learn more about the app</small>
+        </div>
+      </div>
+    </section>
+
+    <a class="logout-button" href="{% url 'logout' %}">Log Out</a>
+  </div>
+
+{% endblock %}
+
+
+
+

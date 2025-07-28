@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+  
+  {% block content %}
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-4 py-16">
+    <h1 class="text-2xl font-bold mb-8">Add Transaction</h1>
+    
+    <form class="space-y-6 max-w-md" method="POST" action="{% url 'expense-create' %}">
+      {% csrf_token %}
+      
+      <!-- Display form errors -->
+      {% if errors %}
+        <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-4">
+          <div class="text-red-700">
+            <p class="font-bold">Error</p>
+            {% for field, error_list in errors.items %}
+              <p>{{ field|title }}: {{ error_list.0 }}</p>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+
+      <!-- Category Select -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+        <select name="category"
+          class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+          <option value="" disabled selected>Select Category</option>
+          {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Amount Input -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Amount</label>
+        <input name="amount"
+          type="number"
+          placeholder="0.00"
+          value="{{ serializer.amount.value|default:'' }}"
+          class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+      </div>
+
+      <!-- Description Input -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+        <textarea name="description"
+          placeholder="Enter description"
+          rows="4"
+          class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >{{ serializer.description.value|default:'' }}</textarea>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="text-right">
+        <button type="submit"
+          class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-2 rounded-full">
+          Add Transaction
+        </button>
+      </div>
+    </form>
+  </main>
+
+  {% endblock%}

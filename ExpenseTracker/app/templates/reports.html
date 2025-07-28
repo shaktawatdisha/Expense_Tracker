@@ -1,0 +1,91 @@
+{% extends "base.html" %} {% block content %}
+<!-- Page Content -->
+<main class="max-w-6xl mx-auto p-6">
+  <h1 class="text-3xl font-bold mb-1">Reports</h1>
+  <p class="text-gray-600 mb-6">Analyze your spending habits over time</p>
+
+  <!-- Tabs -->
+  {% comment %}
+  <div class="flex bg-gray-100 rounded-lg overflow-hidden mb-6 w-fit">
+    <button class="px-6 py-2 bg-white font-medium text-gray-800 rounded-lg">
+      Overview
+    </button>
+    <button class="px-6 py-2 text-gray-500 hover:text-gray-700">
+      Categories
+    </button>
+    <button class="px-6 py-2 text-gray-500 hover:text-gray-700">Trends</button>
+  </div>
+  {% endcomment %}
+
+  <!-- Spending Overview -->
+  <section class="mb-8">
+    <h2 class="text-lg font-semibold mb-4">Spending Overview</h2>
+    <div class="bg-white p-6 rounded-lg border">
+      <h3 class="text-sm font-medium text-gray-600 mb-2">Total Spending</h3>
+      <p class="text-3xl font-bold">${{total_expense}}</p>
+      <p class="text-sm text-green-600 mb-6">Last 3 Months</p>
+
+      <!-- Placeholder bar chart -->
+      <div class="flex items-end gap-6 h-32">
+        {% for month in months_data %}
+        <div
+          class="w-1/6 bg-gray-200 rounded-t"
+          style="height: {{ month.height }};"
+        >
+          <div class="h-3 border-t border-gray-500"></div>
+          <p class="text-sm text-center mt-1">{{ month.month_name }}</p>
+          <p class="text-xs text-center mb-1">
+            ${{ month.total|floatformat:0 }}
+          </p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Spending by Category -->
+  <section class="mb-8">
+    <h2 class="text-lg font-semibold mb-4">Spending by Category</h2>
+    <div class="bg-white p-6 rounded-lg border">
+      <!-- Progress Bars -->
+      <div class="space-y-4">
+        {%for category in category_data %}
+        <div>
+          {% comment %}
+          <p class="text-sm font-medium">{{category.category__name}}</p>
+          {% endcomment %}
+          <div class="flex justify-between text-sm font-medium">
+            <span>{{ category.category__name }}</span>
+            <span
+              >${{ category.total|floatformat:0 }}</span
+            >
+          </div>
+          <div class="w-full bg-gray-100 h-3 rounded">
+            <div
+              class="h-3 bg-gray-400 rounded"
+              style="width: {{ category.percentage }}%;"
+            ></div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Spending Trends -->
+  {% comment %} <section class="mb-8">
+    <h2 class="text-lg font-semibold mb-4">Spending Trends</h2>
+    <div class="bg-white p-6 rounded-lg border">
+      <h3 class="text-sm font-medium text-gray-600 mb-2">Spending Trends</h3>
+      <p class="text-3xl font-bold">${{ total_expense }}</p>
+      <p class="text-sm text-green-600 mb-6">Last 12 Months +5%</p>
+
+      <!-- Replace placeholder image with actual chart -->
+      <canvas id="trendChart" class="w-full h-48"></canvas>
+    </div>
+  </section> {% endcomment %}
+  
+
+</main>
+  {% endblock %}
+

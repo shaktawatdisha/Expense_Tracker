@@ -1,0 +1,39 @@
+
+{% extends "base.html" %}
+  
+  {% block content %}
+  <!-- Page Content -->
+  <div class="p-6 max-w-5xl mx-auto">
+    <div class="flex justify-between items-center mb-6">
+      <h1 class="text-3xl font-semibold">Manage Categories</h1>
+      <a href="{% url 'category-create' %}" class="bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-black">
+        Add Category
+      </a>
+    </div>
+
+    <!-- Expense Categories -->
+    <h2 class="text-lg font-semibold mb-2">Expense Categories</h2>
+    <div class="bg-white border rounded-lg overflow-hidden mb-8">
+      <table class="min-w-full text-sm">
+        <thead class="bg-gray-50 text-gray-600 border-b">
+          <tr>
+            <th class="px-4 py-3 text-left">Category</th>
+            {% comment %} <th class="px-4 py-3 text-left">Actions</th> {% endcomment %}
+          </tr>
+        </thead>
+        <tbody class="text-gray-700">
+            {% for category in categories %}
+
+          <tr class="border-b">
+            <td class="px-4 py-2">{{category.name}}</td>
+            {% comment %} <td class="px-4 py-2"><a href="#" class="text-blue-600">Edit</a> | <a href="#" class="text-red-500">Delete</a></td> {% endcomment %}
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    
+  </div>
+
+{% endblock %}
